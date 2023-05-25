@@ -17,12 +17,12 @@ class args():
     MemDim = 2000
     EntropyLossWeight = 0.0002
     ShrinkThres = 0.0025
-    checkpoint = r'D:/DeepLearning/memae-master/memae-master/results/1.pth'
+    checkpoint = r'memae-master/results/1.pth'
 
     # Dataset setting
     channels = 1
     size = 256
-    videos_dir = r'D:\DeepLearning\memae-master\memae-master\datasets\Test\Test001'
+    videos_dir = r'memae-master\datasets\Test\Test001'
     time_steps = 16
 
     # For GPU training
