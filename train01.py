@@ -33,25 +33,17 @@ class args():
     save_per_epoch = 2
     batch_size = 8  # "batch size for training/testing, default is 4"
     pretrained = False
-    save_model_dir = "./weights/"  # "path to folder where trained model with checkpoints will be saved."
-    save_logs_dir = "./logs/"
     num_workers = 0
     LR = 1e-4
 
-    # resume = r'D:\DeepLearning\FutureFramePrediction.pytorch-main (2)\FutureFramePrediction.pytorch-main\weights\ckpt_2_0.40961124102274576_0.46848397453625995.pth'
     resume = False
-    # generator setting
-    g_lr_init = 0.0002
-
-    # discriminator setting
-    d_lr_init = 0.00002
-
+    saving_model_path = r'memae-master\results'
 
     # Dataset setting
     channels = 1
     # channels = 1 表示读取灰度，=3 读取RGB
     size = 256
-    videos_dir = r'D:\DeepLearning\memae-master\memae-master\datasets\Train'
+    videos_dir = r'memae-master\datasets\Train'
     time_steps = 16
 
     # For GPU training
@@ -65,7 +57,6 @@ def weights_init_normal(m):
         torch.nn.init.normal_(m.weight.data, 1.0, 0.02)
         torch.nn.init.constant_(m.bias.data, 0.0)
 
-
 device = torch.device("cuda")
 torch.cuda.set_device(args.gpu)
 a  = np.random.choice(100, size=5)
@@ -73,7 +64,7 @@ model = AutoEncoderCov3DMem(args.channels,args.MemDim, shrink_thres=args.ShrinkT
 recon_loss_func = nn.MSELoss().to(device)
 entropy_loss_func = EntropyLossEncap().to(device)
 optimizer = torch.optim.Adam(model.parameters(), lr=args.LR)
-saving_model_path = r'D:\DeepLearning\memae-master\memae-master\results'
+saving_model_path = args.saving_model_path
 def train():
 
 
@@ -105,5 +96,5 @@ def train():
     import datetime
     time_ = datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
     print(time_)
-    torch.save(model.state_dict(), 'D:/DeepLearning/memae-master/memae-master/results/1.pth')
+    torch.save(model.state_dict(), saving_model_path)
 train()
