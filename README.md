@@ -5,8 +5,8 @@ This is my own MemAE implementation, referring to the official source code and r
 
 ## Requirements
 
-- Python 3.6
-- PyTorch >1.0
+- Python  >=3.6
+- PyTorch >=1.0
 
 **This code has no special requirements for the environment**
 
